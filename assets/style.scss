@@ -1,0 +1,91 @@
+//button
+.el-button.is-circle{
+    margin: 6px;
+    &:hover{
+        transform: scale(1.2);
+    }
+}
+
+.el-button.large{
+    font-size:larger
+}
+
+.el-button--small.message{
+    font-size: large;
+}
+
+//message
+.el-message-box.message{
+        width: 500px;
+    .el-message-box__content{
+        font-size: large;
+    }
+}
+
+//table
+.el-table.table{
+    width: 100%;
+    thead{
+        font-size: medium;
+        color: blue;
+    }
+}
+
+//form
+.el-form-item{
+    color: palevioletred;
+}
+
+.label .el-form-item__label {
+    color: purple;
+    font-size: 20px
+}
+
+//menu
+.el-menu-vertical-demo {
+    min-height: 100vh;
+    height: 100%;
+}
+
+//container
+body {
+    margin: 0;
+}
+
+#topBar {
+    background: linear-gradient(90deg, red, black);
+    color: white;
+    padding: 20px 0
+}
+
+#main {
+    margin: 0 5%;
+}
+
+//normal
+h1 {
+    color: transparent;
+    background: linear-gradient(rgb(0, 183, 255), green);
+    background-clip: text;
+}
+
+.mid {
+    display: flex;
+    justify-content: center;
+    .sum {
+        color: palevioletred;
+        margin: 5px;      
+    }
+}
+
+.end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+
+
+
+
+
