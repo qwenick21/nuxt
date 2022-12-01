@@ -26,6 +26,9 @@ div
         template(slot-scope="scope")
           el-button(@click="deleteRow(scope.$index, form.products)" type="danger" icon="el-icon-delete" circle v-if="!readonly")
     el-form-item(label="訂單總計" class="label") {{ sumPrice }}
+    el-form-item(label="付款方式" class="label" prop="payType")
+      el-select(v-model="form.payType" placeholder="請選擇")
+        el-option(v-for="item in payTypes" :key="item.value" :value="item.value" :label="item.label")
     el-form-item(label="備註" class="label" prop="note")
       el-input(v-model="form.note" type="textarea" maxlength="100" show-word-limit :autosize="{ minRows: 2}" resize="none")
   el-row(v-if="!readonly")       
@@ -54,6 +57,7 @@ export default {
         person: '',
         note: '',
         sumPrice: 0,
+        payType: '',
         products: [
           {
             name: '',
@@ -80,7 +84,15 @@ export default {
           { required: true, trigger: 'blur', message: '請輸入數量' },
           { validator: validInteger, trigger: 'blur' },
         ],
+        payType: [
+          { required: true, trigger: 'change', message: '請選擇付款方式' },
+        ],
       },
+      payTypes: [
+        { value: '1', label: '現金' },
+        { value: '2', label: '信用卡' },
+        { value: '3', label: '轉帳' },
+      ],
     }
   },
 

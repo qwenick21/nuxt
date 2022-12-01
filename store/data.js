@@ -5,6 +5,7 @@ export const state = () => ({
             no: "Happy20221116160557",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -24,6 +25,7 @@ export const state = () => ({
             no: "Happy20221116160558",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -43,6 +45,7 @@ export const state = () => ({
             no: "Happy20221116160559",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -62,6 +65,7 @@ export const state = () => ({
             no: "Happy20221116160600",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -81,6 +85,7 @@ export const state = () => ({
             no: "Happy20221116160601",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -100,6 +105,7 @@ export const state = () => ({
             no: "Happy20221116160602",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -119,6 +125,7 @@ export const state = () => ({
             no: "Happy20221116160603",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -138,6 +145,7 @@ export const state = () => ({
             no: "Happy20221116160604",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -157,6 +165,7 @@ export const state = () => ({
             no: "Happy20221116160605",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -176,6 +185,7 @@ export const state = () => ({
             no: "Happy20221116160606",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -195,6 +205,7 @@ export const state = () => ({
             no: "Happy20221116160607",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -214,6 +225,7 @@ export const state = () => ({
             no: "Happy20221116160608",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
@@ -233,6 +245,7 @@ export const state = () => ({
             no: "Happy20221116160609",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
+            payType: "1",
             sumPrice: 13000,
             products: [
                 {
