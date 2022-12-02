@@ -13,13 +13,11 @@ div
         el-button(@click="checkRow(scope.$index, pageTableData, true)" type="info" icon="el-icon-view" circle) 
         el-button(@click="checkRow(scope.$index, pageTableData, false)" type="primary" icon="el-icon-edit" circle)
         el-button(@click="deleteRow(scope.$index, pageTableData)" type="danger" icon="el-icon-delete" circle)
-  el-row(class="mid") 
-    span(class="sum") 共 {{ dataCount }} 筆       
-    el-pagination(layout="prev, pager, next" :total="dataCount" :current-page.sync="currentPage")       
+  pageBar(:table-page.sync="currentPage")      
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   layout: 'front',
@@ -32,7 +30,7 @@ export default {
   },
   computed: {
     ...mapState('data', ['tableData', 'page']),
-    ...mapGetters('data', ['dataCount']),
+
     pageTableData() {
       return this.tableData.slice(
         this.pageSize * (this.currentPage - 1),
