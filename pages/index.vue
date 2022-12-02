@@ -19,6 +19,8 @@ div
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from 'vuex'
+
 export default {
   layout: 'front',
   data() {
@@ -29,24 +31,25 @@ export default {
     }
   },
   computed: {
-    dataCount() {
-      return this.$store.getters['data/dataCount']
-    },
+    ...mapState('data', ['tableData', 'page']),
+    ...mapGetters('data', ['dataCount']),
     pageTableData() {
-      return this.$store.state.data.tableData.slice(
+      return this.tableData.slice(
         this.pageSize * (this.currentPage - 1),
         this.pageSize * this.currentPage
       )
     },
   },
   created() {
-    this.currentPage = this.$store.state.data.page
+    this.currentPage = this.page
   },
   destroyed() {
-    this.$store.dispatch('data/setPage', this.currentPage)
+    this.setPage(this.currentPage)
   },
 
   methods: {
+    ...mapActions('data', ['setPage', 'setData', 'deleteTableData']),
+    ...mapActions('status', ['setAddFlag', 'setReadonly']),
     deleteRow(index, rows) {
       this.$confirm('是否要將訂單 ' + rows[index].no + ' 刪除？', '提示', {
         confirmButtonText: '确定',
@@ -57,7 +60,7 @@ export default {
         customClass: 'message',
       }).then(() => {
         const totalIndex = this.pageSize * (this.currentPage - 1) + index
-        this.$store.dispatch('data/deleteTableData', totalIndex)
+        this.deleteTableData(totalIndex)
         this.$message({
           message: '刪除成功！',
           type: 'success',
@@ -66,14 +69,14 @@ export default {
     },
 
     addList() {
-      this.$store.dispatch('status/setAddFlag', true)
-      this.$store.dispatch('status/setReadonly', false)
+      this.setAddFlag(true)
+      this.setReadonly(false)
       this.$router.push('/ListDetail')
     },
     checkRow(index, rows, readonly) {
-      this.$store.dispatch('status/setAddFlag', false)
-      this.$store.dispatch('status/setReadonly', readonly)
-      this.$store.dispatch('data/setData', rows[index])
+      this.setAddFlag(false)
+      this.setReadonly(readonly)
+      this.setData(rows[index])
       this.$router.push('/ListDetail')
     },
   },

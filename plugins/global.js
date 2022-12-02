@@ -1,10 +1,7 @@
 import Vue from "vue";
 import dateFormat from "dateformat";
 
-const tools = {
-    install(Vue) {
-        Vue.prototype.$dateFormat = dateFormat
-    }
-}
+Vue.filter('formatDate', (value, formatType) => {
+    return dateFormat(value, formatType)
+})
 
-Vue.use(tools)

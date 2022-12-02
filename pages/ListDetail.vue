@@ -25,7 +25,7 @@ div
           el-button(@click="addRow(form.products)" type="primary" icon="el-icon-plus" circle v-if="!readonly")
         template(slot-scope="scope")
           el-button(@click="deleteRow(scope.$index, form.products)" type="danger" icon="el-icon-delete" circle v-if="!readonly")
-    el-form-item(label="訂單總計" class="label") {{ sumPrice }}
+    el-form-item(label="訂單總計" class="label") {{ showPrice }}
     el-form-item(label="付款方式" class="label" prop="payType")
       el-select(v-model="form.payType" placeholder="請選擇")
         el-option(v-for="item in payTypes" :key="item.value" :value="item.value" :label="item.label")
@@ -40,6 +40,8 @@ div
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   layout: 'front',
   data() {
@@ -51,9 +53,12 @@ export default {
       }
     }
     return {
+      now: Date.now(),
       form: {
-        date: this.$dateFormat('yyyy - mm - dd'),
-        no: 'Happy' + this.$dateFormat('yyyymmddHHMMss'),
+        date: this.$options.filters.formatDate(this.now, 'yyyy - mm - dd'),
+        no:
+          'Happy' +
+          this.$options.filters.formatDate(this.now, 'yyyymmddHHMMss'),
         person: '',
         note: '',
         sumPrice: 0,
@@ -97,28 +102,21 @@ export default {
   },
 
   computed: {
-    addFlag() {
-      return this.$store.state.status.addFlag
-    },
-    readonly() {
-      return this.$store.state.status.readonly
-    },
+    ...mapState('data', ['data']),
+    ...mapState('status', ['addFlag', 'readonly']),
     title() {
       if (this.addFlag) return '新增訂單'
       if (this.readonly) return '檢視訂單'
       return '編輯訂單'
     },
-    sumPrice() {
+    showPrice() {
       let sum = 0
       this.form.products.forEach((e) => {
         sum += e.price * e.number
       })
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      this.form.sumPrice = sum
       return sum
-    },
-  },
-  watch: {
-    sumPrice(val) {
-      this.form.sumPrice = val
     },
   },
 
@@ -129,7 +127,7 @@ export default {
   // },
   created() {
     if (this.addFlag) return
-    this.form = JSON.parse(JSON.stringify(this.$store.state.data.data))
+    this.form = JSON.parse(JSON.stringify(this.data))
     // console.log('--- Created ---')
     // console.log('title:' + this.title)
   },
@@ -155,6 +153,7 @@ export default {
   // },
 
   methods: {
+    ...mapActions('data', ['setTableData']),
     deleteRow(index, rows) {
       if (rows.length === 1) return
       rows.splice(index, 1)
@@ -183,7 +182,7 @@ export default {
           return false
         } else {
           this.$router.push('/')
-          this.$store.dispatch('data/setTableData', data)
+          this.setTableData(data)
           this.$message({
             message: '儲存成功！',
             type: 'success',

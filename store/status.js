@@ -1,6 +1,6 @@
 export const state = () => ({
     readonly: false,
-    addFlag: false,
+    addFlag: true,
 })
 
 export const mutations = {
