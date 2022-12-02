@@ -5,17 +5,20 @@ el-row(class="mid")
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
-  props: { tablePage: { type: Number, default: 1 } },
+  props: {
+    tablePage: { type: Number, default: 1 },
+    tableCount: { type: Number, default: 0 },
+  },
   data() {
     return {
       currentPage: this.tablePage,
     }
   },
   computed: {
-    ...mapGetters('data', ['dataCount']),
+    dataCount() {
+      return this.tableCount
+    },
   },
   watch: {
     currentPage(val) {

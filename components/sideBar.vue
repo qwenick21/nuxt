@@ -9,12 +9,17 @@ el-menu(default-active="1" class="el-menu-vertical-demo" background-color="#545c
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   methods: {
+    ...mapActions('status', ['setRoute']),
     goHome() {
+      this.setRoute('/')
       this.$router.push('/')
     },
     goSearch() {
+      this.setRoute('ListSearch')
       this.$router.push('/ListSearch')
     },
   },

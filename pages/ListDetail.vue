@@ -2,8 +2,8 @@
 div  
   h1 {{ title }}  
   el-form(ref="form" :model="form" :rules="rules" :disabled="readonly" label-width="120px" class="demo-ruleForm")
-    el-form-item(label="訂單編號" class="label" prop="no")
-      el-input(v-model="form.no" :disabled="true")
+    el-form-item(label="訂單編號" class="label" prop="value")
+      el-input(v-model="form.value" :disabled="true")
     el-form-item(label="訂購人" class="label" prop="person")
       el-input(v-model="form.person") 
     el-form-item(label="訂單商品" class="label")  
@@ -56,7 +56,7 @@ export default {
       now: Date.now(),
       form: {
         date: this.$options.filters.formatDate(this.now, 'yyyy - mm - dd'),
-        no:
+        value:
           'Happy' +
           this.$options.filters.formatDate(this.now, 'yyyymmddHHMMss'),
         person: '',
@@ -103,7 +103,7 @@ export default {
 
   computed: {
     ...mapState('data', ['data']),
-    ...mapState('status', ['addFlag', 'readonly']),
+    ...mapState('status', ['addFlag', 'readonly', 'route']),
     title() {
       if (this.addFlag) return '新增訂單'
       if (this.readonly) return '檢視訂單'
@@ -181,7 +181,7 @@ export default {
           })
           return false
         } else {
-          this.$router.push('/')
+          this.$router.push(this.route)
           this.setTableData(data)
           this.$message({
             message: '儲存成功！',
@@ -191,7 +191,7 @@ export default {
       })
     },
     cancel() {
-      this.$router.push('/')
+      this.$router.push(this.route)
     },
   },
 }

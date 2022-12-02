@@ -5,7 +5,7 @@ div
     el-button(@click="addList" type="primary" class="large") 新增訂單
   el-table(:data="pageTableData" stripe class="table")
     el-table-column(prop="date" label="日期")
-    el-table-column(prop="no" label="編號")
+    el-table-column(prop="value" label="編號")
     el-table-column(prop="person" label="訂購人")
     el-table-column(prop="sumPrice" label="總金額")
     el-table-column(label="操作")
@@ -13,11 +13,11 @@ div
         el-button(@click="checkRow(scope.$index, pageTableData, true)" type="info" icon="el-icon-view" circle) 
         el-button(@click="checkRow(scope.$index, pageTableData, false)" type="primary" icon="el-icon-edit" circle)
         el-button(@click="deleteRow(scope.$index, pageTableData)" type="danger" icon="el-icon-delete" circle)
-  pageBar(:table-page.sync="currentPage")      
+  pageBar(:table-page.sync="currentPage" :table-count="dataCount")      
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   layout: 'front',
@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     ...mapState('data', ['tableData', 'page']),
-
+    ...mapGetters('data', ['dataCount']),
     pageTableData() {
       return this.tableData.slice(
         this.pageSize * (this.currentPage - 1),
@@ -49,7 +49,7 @@ export default {
     ...mapActions('data', ['setPage', 'setData', 'deleteTableData']),
     ...mapActions('status', ['setAddFlag', 'setReadonly']),
     deleteRow(index, rows) {
-      this.$confirm('是否要將訂單 ' + rows[index].no + ' 刪除？', '提示', {
+      this.$confirm('是否要將訂單 ' + rows[index].value + ' 刪除？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',

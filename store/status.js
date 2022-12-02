@@ -1,6 +1,7 @@
 export const state = () => ({
     readonly: false,
     addFlag: true,
+    route: '/',
 })
 
 export const mutations = {
@@ -10,6 +11,9 @@ export const mutations = {
     SET_READONLY(state, payload) {
         state.readonly = payload
     },
+    SET_ROUTE(state, payload) {
+        state.route = payload
+    }
 }
 
 export const actions = {
@@ -19,4 +23,7 @@ export const actions = {
     setReadonly({ commit }, boolean) {
         commit("SET_READONLY", boolean)
     },
+    setRoute({ commit }, string) {
+        commit("SET_ROUTE", string)
+    }
 }

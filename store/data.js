@@ -2,7 +2,7 @@ export const state = () => ({
     tableData: [
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160557",
+            value: "Happy20221116160557",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -22,7 +22,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160558",
+            value: "Happy20221116160558",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -42,7 +42,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160559",
+            value: "Happy20221116160559",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -62,7 +62,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160600",
+            value: "Happy20221116160600",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -82,7 +82,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160601",
+            value: "Happy20221116160601",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -102,7 +102,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160602",
+            value: "Happy20221116160602",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -122,7 +122,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160603",
+            value: "Happy20221116160603",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -142,7 +142,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160604",
+            value: "Happy20221116160604",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -162,7 +162,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160605",
+            value: "Happy20221116160605",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -182,7 +182,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160606",
+            value: "Happy20221116160606",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -202,7 +202,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160607",
+            value: "Happy20221116160607",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -222,7 +222,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160608",
+            value: "Happy20221116160608",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -242,7 +242,7 @@ export const state = () => ({
         },
         {
             date: "2022 - 11 - 16",
-            no: "Happy20221116160609",
+            value: "Happy20221116160609",
             person: "庫洛洛",
             note: "嘿嘿嘿嘿",
             payType: "1",
@@ -277,7 +277,7 @@ export const mutations = {
         state.data = payload
     },
     SET_TABLEDATA(state, payload) {
-        const index = state.tableData.findIndex(e => e.no === payload.no)
+        const index = state.tableData.findIndex(e => e.value === payload.value)
         if (index === -1) {
             state.tableData.push(payload)
             return
