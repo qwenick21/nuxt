@@ -22,7 +22,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('data', ['setData']),
+    ...mapActions('data', ['setDetailData']),
     ...mapActions('status', ['setAddFlag', 'setReadonly']),
     queryNo(queryString, cb) {
       const queryData = this.tableData
@@ -49,7 +49,7 @@ export default {
       }
       this.setAddFlag(false)
       this.setReadonly(false)
-      this.setData(data)
+      this.setDetailData(data)
       this.$router.push('/ListDetail')
     },
   },

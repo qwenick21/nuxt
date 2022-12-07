@@ -261,8 +261,7 @@ export const state = () => ({
             ],
         },
     ],
-    data: {},
-    page: 1
+    detailData: {},
 })
 
 export const getters = {
@@ -270,11 +269,8 @@ export const getters = {
 }
 
 export const mutations = {
-    SET_PAGE(state, payload) {
-        state.page = payload
-    },
-    SET_DATA(state, payload) {
-        state.data = payload
+    SET_DETAILDATA(state, payload) {
+        state.detailData = payload
     },
     SET_TABLEDATA(state, payload) {
         const index = state.tableData.findIndex(e => e.value === payload.value)
@@ -290,11 +286,8 @@ export const mutations = {
 }
 
 export const actions = {
-    setPage({ commit }, index) {
-        commit("SET_PAGE", index)
-    },
-    setData({ commit }, object) {
-        commit("SET_DATA", object)
+    setDetailData({ commit }, object) {
+        commit("SET_DETAILDATA", object)
     },
     setTableData({ commit }, object) {
         commit("SET_TABLEDATA", object)

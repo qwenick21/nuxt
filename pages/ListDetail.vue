@@ -102,8 +102,8 @@ export default {
   },
 
   computed: {
-    ...mapState('data', ['data']),
-    ...mapState('status', ['addFlag', 'readonly', 'route']),
+    ...mapState('data', ['detailData']),
+    ...mapState('status', ['addFlag', 'readonly']),
     title() {
       if (this.addFlag) return '新增訂單'
       if (this.readonly) return '檢視訂單'
@@ -127,7 +127,7 @@ export default {
   // },
   created() {
     if (this.addFlag) return
-    this.form = JSON.parse(JSON.stringify(this.data))
+    this.form = JSON.parse(JSON.stringify(this.detailData))
     // console.log('--- Created ---')
     // console.log('title:' + this.title)
   },
@@ -181,7 +181,7 @@ export default {
           })
           return false
         } else {
-          this.$router.push(this.route)
+          window.history.back()
           this.setTableData(data)
           this.$message({
             message: '儲存成功！',
@@ -191,7 +191,7 @@ export default {
       })
     },
     cancel() {
-      this.$router.push(this.route)
+      window.history.back()
     },
   },
 }

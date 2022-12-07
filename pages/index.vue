@@ -13,7 +13,7 @@ div
         el-button(@click="checkRow(scope.$index, pageTableData, true)" type="info" icon="el-icon-view" circle) 
         el-button(@click="checkRow(scope.$index, pageTableData, false)" type="primary" icon="el-icon-edit" circle)
         el-button(@click="deleteRow(scope.$index, pageTableData)" type="danger" icon="el-icon-delete" circle)
-  pageBar(:table-page.sync="currentPage" :table-count="dataCount")      
+  PageBar(:tablePage.sync="currentPage" :tableCount="dataCount")      
 </template>
 
 <script>
@@ -29,7 +29,8 @@ export default {
     }
   },
   computed: {
-    ...mapState('data', ['tableData', 'page']),
+    ...mapState('data', ['tableData']),
+    ...mapState('status', ['page']),
     ...mapGetters('data', ['dataCount']),
     pageTableData() {
       return this.tableData.slice(
@@ -46,8 +47,8 @@ export default {
   },
 
   methods: {
-    ...mapActions('data', ['setPage', 'setData', 'deleteTableData']),
-    ...mapActions('status', ['setAddFlag', 'setReadonly']),
+    ...mapActions('data', ['setDetailData', 'deleteTableData']),
+    ...mapActions('status', ['setAddFlag', 'setReadonly', 'setPage']),
     deleteRow(index, rows) {
       this.$confirm('是否要將訂單 ' + rows[index].value + ' 刪除？', '提示', {
         confirmButtonText: '确定',
@@ -74,7 +75,7 @@ export default {
     checkRow(index, rows, readonly) {
       this.setAddFlag(false)
       this.setReadonly(readonly)
-      this.setData(rows[index])
+      this.setDetailData(rows[index])
       this.$router.push('/ListDetail')
     },
   },
