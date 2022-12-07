@@ -82,6 +82,8 @@ export default {
 </script>
 
 <style lang="scss">
+$roles: 6;
+
 #container {
   font-family: NotoSansCJKtc-Light;
 }
@@ -126,8 +128,8 @@ export default {
     left: 0;
     opacity: 0;
     filter: alpha(opacity=0);
-    -webkit-animation: slider 30s linear infinite;
-    animation: slider 30s linear infinite;
+    -webkit-animation: slider $roles * 5s linear infinite;
+    animation: slider $roles * 5s linear infinite;
     width: 100%;
     height: 100%;
     img {
@@ -154,6 +156,7 @@ export default {
       #ffffff 10px,
       #ffffff 12px
     );
+    clip-path: polygon(0 0, 100% 0, 100% 15px, 14px 15px, 14px 100%, 0 100%);
   }
   .square {
     position: absolute;
