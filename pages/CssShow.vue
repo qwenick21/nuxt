@@ -3,13 +3,15 @@ div(id="container")
   div(id="top-container")
     a(v-for="role in roles")
       img(:src="require(`~/assets/${role.picture}`)")
-  div(id="top-text")    
-    div(class="square-shadow")  
-    div(class="square letter-31px") MARIN HOUSE
+  div(id="top-text")
+    div(class="square-box")
+      div(class="square-shadow")
+      nuxt-link(to="/")   
+        div(class="square letter-31px") MARIN HOUSE
     div(class="contact-box")
       div(class="contact-before")
         img(src="~assets/instagram.png")
-        img(src="~assets/facebook.png") 
+        img(src="~assets/facebook.png")    
       div(class="line")
       div(class="contact-after")
         div
@@ -20,7 +22,7 @@ div(id="container")
           span marin456@gmail.com  
         div
           i(class="el-icon-s-home") 
-          span 海軍總部  
+          span 海軍總部        
   div(id="role-container")
     div(class="role-box" v-for="role in roles")
       img(:src="require(`~/assets/${role.picture}`)")
@@ -30,12 +32,12 @@ div(id="container")
           div(class="letter-12px") {{ role.chineseName }}
           div(class="price")
             span(class="letter-21px") {{ "฿" + role.price }}
-            span(class="letter-14px") 懸賞金
+            span(class="letter-14px") 
 </template>
 
 <script>
 export default {
-  layout: 'show',
+  layout: 'default',
   data() {
     return {
       roles: [
@@ -90,14 +92,8 @@ $roles: 6;
 
 #top-container {
   position: relative;
-  height: 660px;
+  height: 700px;
   opacity: 0.64;
-  background: rgba(192, 192, 192, 0.2);
-  background-image: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.35) 100%
-  );
   a:nth-child(1) {
     -webkit-animation-delay: 0s;
     animation-delay: 0s;
@@ -132,57 +128,71 @@ $roles: 6;
     animation: slider $roles * 5s linear infinite;
     width: 100%;
     height: 100%;
-    img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
+    @media (min-width: 500px) {
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    @media (max-width: 499.99px) {
+      img {
+        object-fit: contain;
+        width: 100%;
+      }
     }
   }
 }
 
 #top-text {
   position: absolute;
-  top: 155px;
+  top: 100px;
   left: 50%;
+  transform: translate(-50%, 0);
   color: #ffffff;
-  .square-shadow {
-    position: relative;
-    width: 148px;
-    height: 148px;
-    background: repeating-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.28),
-      rgba(255, 255, 255, 0.28) 10px,
-      #ffffff 10px,
-      #ffffff 12px
-    );
-    clip-path: polygon(0 0, 100% 0, 100% 15px, 14px 15px, 14px 100%, 0 100%);
-  }
-  .square {
+  .square-box {
     position: absolute;
-    top: 15px;
-    left: 14px;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    width: 148px;
-    height: 148px;
-    border: 2px solid #ffffff;
-    background: rgba(255, 255, 255, 0.3);
+    left: 50%;
+    transform: translate(-50%, 0);
+    .square-shadow {
+      width: 148px;
+      height: 148px;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.28),
+        rgba(255, 255, 255, 0.28) 10px,
+        #ffffff 10px,
+        #ffffff 12px
+      );
+      clip-path: polygon(0 0, 100% 0, 100% 15px, 14px 15px, 14px 100%, 0 100%);
+    }
+    .square {
+      position: absolute;
+      top: 15px;
+      left: 14px;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      width: 148px;
+      height: 148px;
+      border: 2px solid #ffffff;
+      background: rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+    }
   }
   .contact-box {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin-top: 62px;
+    justify-content: center;
+    margin-top: 210px;
     .line {
       height: 91px;
       border-left: 1px solid #ffffff;
+      margin-left: 35px;
       margin-right: 28px;
     }
     .contact-before {
-      position: absolute;
-      left: -109px;
       img {
         width: 25px;
         height: 25px;
@@ -238,35 +248,71 @@ $roles: 6;
   position: relative;
   display: flex;
   flex-wrap: wrap;
+  top: -107px;
+  left: 50%;
+  transform: translate(-50%, 0);
   justify-content: center;
-  margin-top: -107px;
+  max-width: 1000px;
 }
 
-.role-box {
-  width: 300px;
-  height: 350px;
-  background: #f7f7f7;
-  box-shadow: 2px 2px 9px 0 rgba(0, 0, 0, 0.18);
-  margin: 0px 11px 58px 11px;
-  img {
-    width: 100%;
-    height: 280px;
-  }
-  .letter-box {
-    padding: 23px 0px 0px 30px;
-    .display {
-      display: none;
-      .price {
-        margin-top: 23px;
+@media (min-width: 650px) {
+  .role-box {
+    width: 300px;
+    height: 350px;
+    background: #f7f7f7;
+    box-shadow: 2px 2px 9px 0 rgba(0, 0, 0, 0.18);
+    margin: 0px 11px 58px 11px;
+    img {
+      width: 100%;
+      height: 80%;
+    }
+    .letter-box {
+      padding: 23px 0px 0px 30px;
+      .display {
+        display: none;
+        .price {
+          margin-top: 23px;
+        }
+      }
+    }
+    &:hover {
+      img {
+        height: 218px;
+      }
+      .display {
+        display: block;
       }
     }
   }
-  &:hover {
+}
+
+@media (max-width: 649.99px) {
+  .role-box {
+    width: 44%;
+    height: 250px;
+    background: #f7f7f7;
+    box-shadow: 2px 2px 9px 0 rgba(0, 0, 0, 0.18);
+    margin: 0px 11px 58px 11px;
     img {
-      height: 218px;
+      width: 100%;
+      height: 80%;
     }
-    .display {
-      display: block;
+    .letter-box {
+      padding: 12px 0px 0px 15px;
+      .display {
+        display: none;
+        .price {
+          margin-top: 12px;
+        }
+      }
+    }
+    &:hover {
+      img {
+        height: 60%;
+      }
+      .display {
+        display: block;
+      }
     }
   }
 }
@@ -283,11 +329,21 @@ $roles: 6;
   letter-spacing: 1.25px;
 }
 
-.letter-21px {
-  font-size: 21px;
-  color: #000000;
-  letter-spacing: 2.19px;
-  line-height: 31px;
+@media (min-width: 650px) {
+  .letter-21px {
+    font-size: 21px;
+    color: #000000;
+    letter-spacing: 2.19px;
+    line-height: 31px;
+  }
+}
+
+@media (max-width: 649.99px) {
+  .letter-21px {
+    font-size: 14px;
+    color: #000000;
+    letter-spacing: 1.46px;
+  }
 }
 
 .letter-31px {
