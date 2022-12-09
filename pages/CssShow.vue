@@ -37,7 +37,6 @@ div(id="container")
 
 <script>
 export default {
-  layout: 'default',
   data() {
     return {
       roles: [
@@ -77,6 +76,12 @@ export default {
           chineseName: '娜美',
           price: '66.000.000',
         },
+        {
+          picture: 'Franky.jpeg',
+          name: 'Franky',
+          chineseName: '佛朗基',
+          price: '94.000.000',
+        },
       ],
     }
   },
@@ -84,7 +89,7 @@ export default {
 </script>
 
 <style lang="scss">
-$roles: 6;
+$roles: 7;
 
 #container {
   font-family: NotoSansCJKtc-Light;
@@ -117,6 +122,10 @@ $roles: 6;
   a:nth-child(6) {
     -webkit-animation-delay: 25s;
     animation-delay: 25s;
+  }
+  a:nth-child(7) {
+    -webkit-animation-delay: 30s;
+    animation-delay: 30s;
   }
   a {
     position: absolute;
@@ -216,29 +225,29 @@ $roles: 6;
 }
 
 @-webkit-keyframes slider {
-  2% {
+  1.5% {
     opacity: 1;
     filter: alpha(opacity=100);
   }
-  14.6% {
+  13% {
     opacity: 1;
     filter: alpha(opacity=100);
   }
-  16.6% {
+  14.3% {
     opacity: 0;
     filter: alpha(opacity=0);
   }
 }
 @keyframes slider {
-  2% {
+  1.5% {
     opacity: 1;
     filter: alpha(opacity=100);
   }
-  14.6% {
+  13% {
     opacity: 1;
     filter: alpha(opacity=100);
   }
-  16.6% {
+  14.3% {
     opacity: 0;
     filter: alpha(opacity=0);
   }
@@ -251,17 +260,16 @@ $roles: 6;
   top: -107px;
   left: 50%;
   transform: translate(-50%, 0);
-  justify-content: center;
-  max-width: 1000px;
+  max-width: 966px;
 }
 
-@media (min-width: 650px) {
+@media (min-width: 500px) {
   .role-box {
-    width: 300px;
-    height: 350px;
+    width: 31.33%;
+    height: auto;
     background: #f7f7f7;
     box-shadow: 2px 2px 9px 0 rgba(0, 0, 0, 0.18);
-    margin: 0px 11px 58px 11px;
+    margin: 0px 1% 58px 1%;
     img {
       width: 100%;
       height: 80%;
@@ -277,7 +285,7 @@ $roles: 6;
     }
     &:hover {
       img {
-        height: 218px;
+        height: 65%;
       }
       .display {
         display: block;
@@ -286,13 +294,13 @@ $roles: 6;
   }
 }
 
-@media (max-width: 649.99px) {
+@media (max-width: 499.99px) {
   .role-box {
     width: 44%;
-    height: 250px;
+    height: auto;
     background: #f7f7f7;
     box-shadow: 2px 2px 9px 0 rgba(0, 0, 0, 0.18);
-    margin: 0px 11px 58px 11px;
+    margin: 0px 3% 58px 3%;
     img {
       width: 100%;
       height: 80%;
@@ -308,7 +316,7 @@ $roles: 6;
     }
     &:hover {
       img {
-        height: 60%;
+        height: 65%;
       }
       .display {
         display: block;
@@ -329,7 +337,7 @@ $roles: 6;
   letter-spacing: 1.25px;
 }
 
-@media (min-width: 650px) {
+@media (min-width: 700px) {
   .letter-21px {
     font-size: 21px;
     color: #000000;
@@ -338,7 +346,7 @@ $roles: 6;
   }
 }
 
-@media (max-width: 649.99px) {
+@media (max-width: 699.99px) {
   .letter-21px {
     font-size: 14px;
     color: #000000;
