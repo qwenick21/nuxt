@@ -260,7 +260,7 @@ $roles: 7;
   top: -107px;
   left: 50%;
   transform: translate(-50%, 0);
-  max-width: 966px;
+  max-width: 1200px;
 }
 
 @media (min-width: 500px) {
