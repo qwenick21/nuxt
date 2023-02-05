@@ -74,6 +74,28 @@ h1 {
     background-clip: text;
 }
 
+.search-group {
+    width: 300px;
+    .el-input {
+        font-size: 16px;
+    }
+}
+
+ul.list {
+    list-style-type: none;
+    border: 1px solid #dcdfed;
+    border-radius: 5px;
+    line-height: 40px;
+    margin-block-start: 0.3em;
+    padding: 10px 0px;
+    :hover {
+        background-color: #dcdcdc;
+    }
+    li {
+        padding-left: 15px;
+    }
+}
+
 .mid {
     display: flex;
     justify-content: center;
