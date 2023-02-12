@@ -2,7 +2,7 @@
 div
   h1 {{ title }}
   .search-group
-    //- --- with tool ---
+    //- === autocomplete with tool ===
     //- el-autocomplete(v-model.trim="inputNo" :fetch-suggestions="queryNo" placeholder="查詢編號" clearable class="search-input")
     //- el-button(@click="search" type="primary" class="large") 查詢
     el-input(v-model.trim="inputNo" placeholder="查詢編號" clearable)
@@ -40,7 +40,7 @@ export default {
   methods: {
     ...mapActions('data', ['setDetailData']),
     ...mapActions('status', ['setAddFlag', 'setReadonly']),
-    // with tool
+    // autocomplete with tool
     // queryNo(queryString, cb) {
     //   const queryData = this.tableData
     //   const results = queryString

@@ -253,6 +253,12 @@ $roles: 7;
   }
 }
 
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
 #role-container {
   position: relative;
   display: flex;
@@ -263,65 +269,71 @@ $roles: 7;
   max-width: 1200px;
 }
 
-@media (min-width: 500px) {
-  .role-box {
-    width: 31.33%;
-    height: auto;
+.role-box {
+  position: relative;
+  z-index: 0;
+  width: 29.33%;
+  height: auto;
+  background: #f7f7f7;
+  box-shadow: 2px 2px 9px 0 rgba(0, 0, 0, 0.18);
+  margin: 0px 1% 58px 1%;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 0.5rem;
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+    height: 200%;
+    background-color: #1a232a;
+    background-image: conic-gradient(
+      transparent,
+      rgba(168, 239, 255, 1),
+      transparent 30%
+    );
+    animation: rotate 4s linear infinite;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 0.5rem;
+    top: 0.5rem;
+    width: calc(100% - 1rem);
+    height: calc(100% - 1rem);
     background: #f7f7f7;
-    box-shadow: 2px 2px 9px 0 rgba(0, 0, 0, 0.18);
-    margin: 0px 1% 58px 1%;
+    border-radius: 10px;
+  }
+  img {
+    width: 100%;
+    height: 80%;
+  }
+  .letter-box {
+    padding: 23px 0px 0px 30px;
+    .display {
+      display: none;
+      .price {
+        margin-top: 23px;
+      }
+    }
+  }
+  &:hover {
     img {
-      width: 100%;
-      height: 80%;
+      height: 65%;
     }
-    .letter-box {
-      padding: 23px 0px 0px 30px;
-      .display {
-        display: none;
-        .price {
-          margin-top: 23px;
-        }
-      }
-    }
-    &:hover {
-      img {
-        height: 65%;
-      }
-      .display {
-        display: block;
-      }
+    .display {
+      display: block;
     }
   }
 }
 
 @media (max-width: 499.99px) {
   .role-box {
-    width: 44%;
-    height: auto;
-    background: #f7f7f7;
-    box-shadow: 2px 2px 9px 0 rgba(0, 0, 0, 0.18);
+    width: 94%;
     margin: 0px 3% 58px 3%;
-    img {
-      width: 100%;
-      height: 80%;
-    }
-    .letter-box {
-      padding: 12px 0px 0px 15px;
-      .display {
-        display: none;
-        .price {
-          margin-top: 12px;
-        }
-      }
-    }
-    &:hover {
-      img {
-        height: 65%;
-      }
-      .display {
-        display: block;
-      }
-    }
   }
 }
 
