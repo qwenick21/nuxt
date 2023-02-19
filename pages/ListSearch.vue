@@ -51,7 +51,7 @@ export default {
     queryNo() {
       const queryLength = 10
       const resultData = this.tableData.filter((e) =>
-        e.value.includes(this.inputNo)
+        e.value.toLowerCase().includes(this.inputNo.toLowerCase())
       )
       this.queryData = resultData.slice(0, queryLength)
     },

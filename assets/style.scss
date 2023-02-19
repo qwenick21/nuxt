@@ -105,6 +105,13 @@ ul.list {
   }
 }
 
+.center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .end {
   display: flex;
   justify-content: flex-end;
