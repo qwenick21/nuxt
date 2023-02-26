@@ -34,6 +34,13 @@
 //form
 .el-form-item {
   color: palevioletred;
+  .info {
+    color: #959595;
+    margin-left: 10px;
+    &::before {
+      color: blue;
+    }
+  }
 }
 
 .label .el-form-item__label {

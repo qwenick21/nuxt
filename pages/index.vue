@@ -1,19 +1,21 @@
 <template lang="pug">
 div
-  h1 {{ title }}  
+  h1 {{ title }}
   el-row(class="end")
     el-button(@click="addList" type="primary" class="large") 新增訂單
   el-table(:data="pageTableData" stripe class="table")
     el-table-column(prop="date" label="日期")
     el-table-column(prop="value" label="編號")
     el-table-column(prop="person" label="訂購人")
-    el-table-column(prop="sumPrice" label="總金額")
+    el-table-column(label="總金額")
+      template(slot-scope="scope")
+        span(v-amount="scope.row.sumPrice")
     el-table-column(label="操作")
       template(slot-scope="scope")
-        el-button(@click="checkRow(scope.$index, pageTableData, true)" type="info" icon="el-icon-view" circle) 
+        el-button(@click="checkRow(scope.$index, pageTableData, true)" type="info" icon="el-icon-view" circle)
         el-button(@click="checkRow(scope.$index, pageTableData, false)" type="primary" icon="el-icon-edit" circle)
         el-button(@click="deleteRow(scope.$index, pageTableData)" type="danger" icon="el-icon-delete" circle)
-  PageBar(:tablePage.sync="currentPage" :tableCount="dataCount")      
+  PageBar(:tablePage.sync="currentPage" :tableCount="dataCount")
 </template>
 
 <script>

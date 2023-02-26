@@ -1,37 +1,39 @@
 <template lang="pug">
-div  
-  h1 {{ title }}  
+div
+  h1 {{ title }}
   el-form(ref="form" :model="form" :rules="rules" :disabled="readonly" label-width="120px" class="demo-ruleForm")
     el-form-item(label="訂單編號" class="label" prop="value")
       el-input(v-model="form.value" :disabled="true")
     el-form-item(label="訂購人" class="label" prop="person")
-      el-input(v-model="form.person") 
-    el-form-item(label="訂單商品" class="label")  
+      el-input(v-model="form.person")
+    el-form-item(label="訂單商品" class="label")
     el-table(:data="form.products" border stripe class="table")
       el-table-column(label="名稱")
         template(slot-scope="scope")
-          el-form-item(label=" " :prop="'products.' + scope.$index + '.name'" :rules='rules.name' label-width="12px")         
+          el-form-item(label=" " :prop="'products.' + scope.$index + '.name'" :rules='rules.name' label-width="12px")
             el-input(v-model="scope.row.name")
       el-table-column(label="單價")
         template(slot-scope="scope")
-          el-form-item(label=" " :prop="'products.' + scope.$index + '.price'" :rules='rules.price' label-width="12px")   
+          el-form-item(label=" " :prop="'products.' + scope.$index + '.price'" :rules='rules.price' label-width="12px")
             el-input(v-model.number="scope.row.price")
       el-table-column(label="數量")
         template(slot-scope="scope")
-          el-form-item(label=" " :prop="'products.' + scope.$index + '.number'" :rules='rules.number' label-width="12px")   
+          el-form-item(label=" " :prop="'products.' + scope.$index + '.number'" :rules='rules.number' label-width="12px")
             el-input(v-model.number="scope.row.number")
       el-table-column
         template(slot="header")
           el-button(@click="addRow(form.products)" type="primary" icon="el-icon-plus" circle v-if="!readonly")
         template(slot-scope="scope")
           el-button(@click="deleteRow(scope.$index, form.products)" type="danger" icon="el-icon-delete" circle v-if="!readonly")
-    el-form-item(label="訂單總計" class="label") {{ showPrice }}
+    el-form-item(label="訂單總計" class="label")
+      span(v-amount="showPrice")
+      i.info.el-icon-info {{ '滿10萬享95折優惠' }}
     el-form-item(label="付款方式" class="label" prop="payType")
       el-select(v-model="form.payType" placeholder="請選擇")
         el-option(v-for="item in payTypes" :key="item.value" :value="item.value" :label="item.label")
     el-form-item(label="備註" class="label" prop="note")
       el-input(v-model="form.note" type="textarea" maxlength="100" show-word-limit :autosize="{ minRows: 2}" resize="none")
-  el-row(v-if="!readonly")       
+  el-row(v-if="!readonly")
     el-button(type="primary" @click="onSubmit(form, 'form')" v-if="addFlag" class="large" icon="el-icon-plus") 新增
     el-button(type="primary" @click="onSubmit(form, 'form')" v-else class="large" icon="el-icon-check") 儲存
     el-button(@click="cancel" class='large' icon="el-icon-close") 取消
@@ -114,6 +116,7 @@ export default {
       this.form.products.forEach((e) => {
         sum += e.price * e.number
       })
+      if (sum >= 100000) sum *= 0.95
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       this.form.sumPrice = sum
       return sum
