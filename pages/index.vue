@@ -38,12 +38,8 @@ export default {
         this.pageSize * this.currentPage
       )
     },
-    isLogin() {
-      return this.$cookies.get('ifLogin')
-    },
   },
   created() {
-    if (!this.isLogin) this.$router.push('/Login')
     this.currentPage = this.page
   },
   destroyed() {
