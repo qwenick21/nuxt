@@ -27,7 +27,7 @@ div
           el-button(@click="deleteRow(scope.$index, form.products)" type="danger" icon="el-icon-delete" circle v-if="!readonly")
     el-form-item(label="訂單總計" class="label")
       span(v-amount="showPrice")
-      i.info.el-icon-info {{ '滿10萬享95折優惠' }}
+      i.info(class="el-icon-info") {{ '滿10萬享95折優惠' }}
     el-form-item(label="付款方式" class="label" prop="payType")
       el-select(v-model="form.payType" placeholder="請選擇")
         el-option(v-for="item in payTypes" :key="item.value" :value="item.value" :label="item.label")

@@ -45,7 +45,10 @@ export default {
   },
   computed: {
     loginCheck() {
-      return this.loginSet.includes(this.form)
+      return this.loginSet.some(
+        (e) =>
+          e.account === this.form.account && e.password === this.form.password
+      )
     },
   },
   methods: {
