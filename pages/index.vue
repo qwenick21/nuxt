@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   h1 {{ title }}
-  el-row(class="end")
+  el-row.end
     el-button(@click="addList" type="primary" class="large") 新增訂單
   el-table(:data="pageTableData" stripe class="table")
     el-table-column(prop="date" label="日期")
@@ -68,7 +68,6 @@ export default {
         })
       })
     },
-
     addList() {
       this.setAddFlag(true)
       this.setReadonly(false)

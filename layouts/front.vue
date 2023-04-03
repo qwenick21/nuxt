@@ -1,9 +1,9 @@
 <template lang="pug">  
 div
-  TopBar(id="topBar") 
+  TopBar#topBar 
   el-container
-    el-aside(id="aside" width="150px") 
+    el-aside#aside(width="150px") 
       SideBar
-    el-main(id="main")
+    el-main#main
       nuxt
 </template>

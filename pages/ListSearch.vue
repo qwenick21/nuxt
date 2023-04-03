@@ -22,6 +22,7 @@ export default {
       inputNo: '',
       showList: false,
       queryData: [],
+      queryLength: 10,
     }
   },
   computed: {
@@ -49,11 +50,10 @@ export default {
     //   cb(results)
     // },
     queryNo() {
-      const queryLength = 10
       const resultData = this.tableData.filter((e) =>
         e.value.toLowerCase().includes(this.inputNo.toLowerCase())
       )
-      this.queryData = resultData.slice(0, queryLength)
+      this.queryData = resultData.slice(0, this.queryLength)
     },
     async setInput(value) {
       await (this.inputNo = value)

@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  el-row(class="end")
+  el-row.end
     el-col(:span="6") 
       i(class="el-icon-time") 當前時間: {{ now | formatDate('yyyy/mm/dd HH:MM:ss') }}   
     el-col(:span="6") 

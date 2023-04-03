@@ -17,6 +17,20 @@ export default {
         account: '',
         password: '',
       },
+      loginSet: [
+        {
+          account: 'frank32',
+          password: 'aaaa1234',
+        },
+        {
+          account: 'nick001',
+          password: 'aaaa1234',
+        },
+        {
+          account: 'qwenick21',
+          password: 'aaaa1234',
+        },
+      ],
       rules: {
         account: [
           { required: true, trigger: 'blur', message: '請輸入帳號' },
@@ -31,9 +45,7 @@ export default {
   },
   computed: {
     loginCheck() {
-      return (
-        this.form.account === 'qwenick21' && this.form.password === 'aaaa1234'
-      )
+      return this.loginSet.includes(this.form)
     },
   },
   methods: {

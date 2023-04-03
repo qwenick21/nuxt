@@ -1,19 +1,19 @@
 <template lang="pug">
-div(id="container")
-  div(id="top-container")
+#container
+  #top-container
     a(v-for="role in roles")
       img(:src="require(`~/assets/${role.picture}`)")
-  div(id="top-text")
-    div(class="square-box")
-      div(class="square-shadow")
+  #top-text
+    .square-box
+      .square-shadow
       nuxt-link(to="/")   
-        div(class="square letter-31px") MARIN HOUSE
-    div(class="contact-box")
-      div(class="contact-before")
-        img(src="~assets/instagram.png")
-        img(src="~assets/facebook.png")    
-      div(class="line")
-      div(class="contact-after")
+        .square.letter-31px MARIN HOUSE
+    .contact-box
+      .contact-before
+        img(src="~/assets/instagram.png")
+        img(src="~/assets/facebook.png")    
+      .line
+      .contact-after
         div
           i(class="el-icon-phone") 
           span 08-8888888
@@ -23,16 +23,16 @@ div(id="container")
         div
           i(class="el-icon-s-home") 
           span 海軍總部        
-  div(id="role-container")
-    div(class="role-box" v-for="role in roles")
+  #role-container
+    .role-box(v-for="role in roles")
       img(:src="require(`~/assets/${role.picture}`)")
-      div(class="letter-box")
-        div(class="letter-14px") {{ role.name }}
-        div(class="display")
-          div(class="letter-12px") {{ role.chineseName }}
-          div(class="price")
-            span(class="letter-21px") {{ "฿" + role.price }}
-            span(class="letter-14px") 
+      .letter-box
+        .letter-14px {{ role.name }}
+        .display
+          .letter-12px {{ role.chineseName }}
+          .price
+            span.letter-21px {{ "฿" + role.price }}
+            span.letter-14px
 </template>
 
 <script>
@@ -322,15 +322,27 @@ $roles: 7;
   }
   &:hover {
     img {
-      height: 65%;
+      height: 70%;
     }
     .display {
       display: block;
     }
+    @media (max-width: 549.99px) {
+      img {
+        height: 75%;
+      }
+    }
   }
 }
 
-@media (max-width: 499.99px) {
+@media (max-width: 799.99px) {
+  .role-box {
+    width: 43%;
+    margin: 0px 2% 58px 2%;
+  }
+}
+
+@media (max-width: 549.99px) {
   .role-box {
     width: 94%;
     margin: 0px 3% 58px 3%;

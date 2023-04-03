@@ -274,11 +274,8 @@ export const mutations = {
   },
   SET_TABLEDATA(state, payload) {
     const index = state.tableData.findIndex((e) => e.value === payload.value)
-    if (index === -1) {
-      state.tableData.push(payload)
-      return
-    }
-    state.tableData[index] = payload
+    if (index === -1) state.tableData.push(payload)
+    else state.tableData[index] = payload
   },
   DELETE_TABLEDATA(state, payload) {
     state.tableData.splice(payload, 1)

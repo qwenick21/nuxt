@@ -112,17 +112,18 @@ export default {
       return '編輯訂單'
     },
     showPrice() {
-      let sum = 0
-      this.form.products.forEach((e) => {
-        sum += e.price * e.number
-      })
+      let sum = this.form.products.reduce((temp, e) => {
+        return temp + e.price * e.number
+      }, 0)
       if (sum >= 100000) sum *= 0.95
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      this.form.sumPrice = sum
       return sum
     },
   },
-
+  watch: {
+    showPrice(val) {
+      this.form.sumPrice = val
+    },
+  },
   // observe lifecycle
   // beforeCreate() {
   //   console.log('--- beforeCreate ---')
