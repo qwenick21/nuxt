@@ -1,20 +1,42 @@
 <template lang="pug">
 .center-box
   el-form.login-box(:model="form" :rules="rules" ref="form" label-width="100px" class="demo-ruleForm")
-    el-form-item.label(label="帳號" prop="account")
+    el-form-item(label="帳號" class="label" prop="account")
       el-input(v-model.trim="form.account")
-    el-form-item.label(label="密碼" prop="password")
+    el-form-item(label="密碼" class="label" prop="password")
       el-input(v-model.trim="form.password" show-password)
     .mid  
-      el-button.large(type="primary" @click="login('form')") 登入    
+      el-button(type="primary" @click="login('form')" class="large") 一般登入
+      el-button(type="primary" @click="loginWithEmail" class="large") 以Email登入
+      el-button(@click="displayRegisterForm = true" class="large") 註冊
+  //- register form
+  el-dialog(title="註冊頁面" :visible.sync="displayRegisterForm" width="700px")
+    el-form(:model="registerForm" :rules="rules" ref="registerForm" label-width="100px" class="demo-ruleForm")
+      el-form-item(label="信箱" class="label" prop="email")
+        el-input(v-model.trim="registerForm.email" hide-message-after-blur)
+      el-form-item(label="密碼" class="label" prop="password")
+        el-input(v-model.trim="registerForm.password" show-password)  
+    div(slot="footer" class="dialog-footer")
+      el-button(type="primary" @click="register" class="large") 註冊
+      el-button(@click="displayRegisterForm = false" class="large") 取消             
 </template>
 
 <script>
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import messageMixin from '@/mixins/message'
+
 export default {
+  mixins: [messageMixin],
   data() {
     return {
+      displayRegisterForm: false,
       form: {
         account: '',
+        password: '',
+      },
+      registerForm: {
+        email: '',
         password: '',
       },
       loginSet: [
@@ -32,14 +54,16 @@ export default {
         },
       ],
       rules: {
-        account: [
-          { required: true, trigger: 'blur', message: '請輸入帳號' },
-          { max: 20, trigger: 'blur', message: '長度須在20字以內' },
+        email: [
+          { required: true, trigger: 'blur', message: '請輸入信箱' },
+          {
+            type: 'email',
+            message: '請輸入正確的信箱格式',
+            trigger: ['blur', 'change'],
+          },
         ],
-        password: [
-          { required: true, trigger: 'blur', message: '請輸入密碼' },
-          { max: 20, trigger: 'blur', message: '長度須在20字以內' },
-        ],
+        account: [{ required: true, trigger: 'blur', message: '請輸入帳號' }],
+        password: [{ required: true, trigger: 'blur', message: '請輸入密碼' }],
       },
     }
   },
@@ -50,6 +74,17 @@ export default {
           e.account === this.form.account && e.password === this.form.password
       )
     },
+  },
+  mounted() {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyBqA1afh29knWoVvMzSeBFkRmGuXlGQDrc',
+      authDomain: 'nick-is-so-handsome.firebaseapp.com',
+      projectId: 'nick-is-so-handsome',
+      storageBucket: 'nick-is-so-handsome.appspot.com',
+      messagingSenderId: '75105878315',
+      appId: '1:75105878315:web:84e31ed75510c34b66c56e',
+      measurementId: 'G-MEHE1K720V',
+    })
   },
   methods: {
     login(rulesData) {
@@ -63,12 +98,53 @@ export default {
         } else if (this.loginCheck) {
           this.$router.push('/')
           this.$cookies.set('ifLogin', true)
+          this.$cookies.set('username', this.form.account)
         } else
           this.$message({
             message: '帳號或密碼錯誤！',
             type: 'error',
           })
       })
+    },
+    async loginWithEmail() {
+      try {
+        const loginMessage = await firebase
+          .auth()
+          .signInWithEmailAndPassword(this.form.account, this.form.password)
+        const user = loginMessage.user.email
+        this.$router.push('/')
+        this.$cookies.set('ifLogin', true)
+        this.$cookies.set('username', user)
+      } catch (error) {
+        this.$message({
+          message: this.showApiMessage(error.message),
+          type: 'error',
+        })
+      }
+    },
+    async register() {
+      try {
+        await firebase
+          .auth()
+          .createUserWithEmailAndPassword(
+            this.registerForm.email,
+            this.registerForm.password
+          )
+        this.displayRegisterForm = false
+        this.registerForm = {
+          email: '',
+          password: '',
+        }
+        this.$message({
+          message: '註冊成功',
+          type: 'success',
+        })
+      } catch (error) {
+        this.$message({
+          message: this.showApiMessage(error.message),
+          type: 'error',
+        })
+      }
     },
   },
 }
