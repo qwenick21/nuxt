@@ -28,6 +28,10 @@ import messageMixin from '@/mixins/message'
 
 export default {
   mixins: [messageMixin],
+  async asyncData({ $axios }) {
+    const loginSet = await require('@/data/account.json')
+    return loginSet
+  },
   data() {
     return {
       displayRegisterForm: false,
@@ -39,20 +43,7 @@ export default {
         email: '',
         password: '',
       },
-      loginSet: [
-        {
-          account: 'frank32',
-          password: 'aaaa1234',
-        },
-        {
-          account: 'nick001',
-          password: 'aaaa1234',
-        },
-        {
-          account: 'qwenick21',
-          password: 'aaaa1234',
-        },
-      ],
+      loginSet: [],
       rules: {
         email: [
           { required: true, trigger: 'blur', message: '請輸入信箱' },

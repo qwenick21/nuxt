@@ -1,0 +1,16 @@
+{
+  "loginSet": [
+    {
+      "account": "frank32",
+      "password": "aaaa1234"
+    },
+    {
+      "account": "nick001",
+      "password": "aaaa1234"
+    },
+    {
+      "account": "qwenick21",
+      "password": "aaaa1234"
+    }
+  ]
+}

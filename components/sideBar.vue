@@ -12,8 +12,6 @@ el-menu(class= "el-menu-vertical-demo" :default-active="$route.path" background-
 </template>
 
 <script>
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
 import messageMixin from '@/mixins/message'
 
 export default {
@@ -40,17 +38,9 @@ export default {
     }
   },
   methods: {
-    async logout() {
-      try {
-        await firebase.auth().signOut()
-        this.$cookies.set('ifLogin', false)
-        this.$cookies.set('username', null)
-      } catch (error) {
-        this.$message({
-          message: this.showApiMessage(error.message),
-          type: 'error',
-        })
-      }
+    logout() {
+      this.$cookies.set('ifLogin', false)
+      this.$cookies.set('username', null)
     },
   },
 }
