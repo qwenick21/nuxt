@@ -12,10 +12,7 @@ el-menu(class= "el-menu-vertical-demo" :default-active="$route.path" background-
 </template>
 
 <script>
-import messageMixin from '@/mixins/message'
-
 export default {
-  mixins: [messageMixin],
   data() {
     return {
       menu: [
