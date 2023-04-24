@@ -1,12 +1,12 @@
 <template lang="pug">
 .center-box
   el-form.login-box(:model="form" :rules="rules" ref="form" label-width="100px" class="demo-ruleForm")
-    el-form-item(label="帳號" class="label" prop="account")
+    el-form-item.LoginAccount(label="帳號" class="label" prop="account")
       el-input(v-model.trim="form.account")
-    el-form-item(label="密碼" class="label" prop="password")
+    el-form-item.LoginPassword(label="密碼" class="label" prop="password")
       el-input(v-model.trim="form.password" show-password)
     .mid  
-      el-button(type="primary" @click="login('form')" class="large") 一般登入
+      el-button.LoginButton(type="primary" @click="login('form')" class="large") 一般登入
       el-button(type="primary" @click="loginWithEmail" class="large") 以Email登入
       el-button(@click="displayRegisterForm = true" class="large") 註冊
   //- register form
