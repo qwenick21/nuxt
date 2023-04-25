@@ -11,13 +11,15 @@
       el-button(@click="displayRegisterForm = true" class="large") 註冊
   //- register form
   el-dialog(title="註冊頁面" :visible.sync="displayRegisterForm" width="700px")
-    el-form(:model="registerForm" :rules="rules" ref="registerForm" label-width="100px" class="demo-ruleForm")
+    el-form(:model="registerForm" :rules="rules" ref="registerForm" label-width="130px" class="demo-ruleForm")
       el-form-item(label="信箱" class="label" prop="email")
         el-input(v-model.trim="registerForm.email" hide-message-after-blur)
       el-form-item(label="密碼" class="label" prop="password")
-        el-input(v-model.trim="registerForm.password" show-password)  
+        el-input(v-model.trim="registerForm.password" show-password)
+      el-form-item(label="確認密碼" class="label" prop="checkPassword")
+        el-input(v-model.trim="registerForm.checkPassword" show-password)      
     div(slot="footer" class="dialog-footer")
-      el-button(type="primary" @click="register" class="large") 註冊
+      el-button(type="primary" @click="registerValidate('registerForm')" class="large") 註冊
       el-button(@click="displayRegisterForm = false" class="large") 取消             
 </template>
 
@@ -33,6 +35,13 @@ export default {
     return loginSet
   },
   data() {
+    const validPassword = (rule, value, callback) => {
+      if (value === this.registerForm.password) {
+        callback()
+      } else {
+        callback(new Error('確認密碼不一致'))
+      }
+    }
     return {
       displayRegisterForm: false,
       form: {
@@ -42,6 +51,7 @@ export default {
       registerForm: {
         email: '',
         password: '',
+        checkPassword: '',
       },
       loginSet: [],
       rules: {
@@ -54,7 +64,14 @@ export default {
           },
         ],
         account: [{ required: true, trigger: 'blur', message: '請輸入帳號' }],
-        password: [{ required: true, trigger: 'blur', message: '請輸入密碼' }],
+        password: [
+          { required: true, trigger: 'blur', message: '請輸入密碼' },
+          { min: 6, trigger: 'blur', message: '密碼須為6碼以上' },
+        ],
+        checkPassword: [
+          { required: true, trigger: 'blur', message: '請再次輸入密碼' },
+          { validator: validPassword, trigger: 'blur' },
+        ],
       },
     }
   },
@@ -113,6 +130,19 @@ export default {
         })
       }
     },
+    registerValidate(rulesData) {
+      this.$refs[rulesData].validate((valid) => {
+        if (!valid) {
+          this.$message({
+            message: '欄位驗證錯誤！',
+            type: 'error',
+          })
+          return false
+        } else {
+          this.register()
+        }
+      })
+    },
     async register() {
       try {
         await firebase
@@ -125,6 +155,7 @@ export default {
         this.registerForm = {
           email: '',
           password: '',
+          checkPassword: '',
         }
         this.$message({
           message: '註冊成功',
@@ -143,6 +174,7 @@ export default {
 
 <style lang="scss">
 .login-box {
+  background-color: #000a200d;
   width: 500px;
   border: 1px solid #ebebeb;
   padding: 20px;
